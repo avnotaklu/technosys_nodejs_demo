@@ -1,0 +1,20 @@
+# my-scenario.yml
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  engines:
+   socketio-v4: {}
+
+scenarios:
+  - name: My sample scenario
+    engine: socketio-v4
+    flow:
+      # wait for the WebSocket upgrade (optional)
+      - think: 1
+      # emit in a custom namespace
+      - namespace: "/my-namespace"
+        emit:
+          channel: "hello"
+          data: "world"
